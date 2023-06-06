@@ -1,0 +1,12 @@
+.tasks-form {
+    background-color: yellow;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tasks-form input {
+    outline: none;
+    padding: 5px;
+}
