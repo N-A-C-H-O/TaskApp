@@ -1,18 +1,13 @@
 import "./TaskContainer.css";
 import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
-import { Task } from "../../types";
+import { Task, addTask } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
 
 const TaskContainer = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      name: "Nueva tarea",
-      isCompleted: true
-    }
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (newTask: Task): void => {
+  const addTask: addTask = (newTask) => {
     setTasks([...tasks, newTask]);
   }
 

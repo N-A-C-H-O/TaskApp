@@ -1,20 +1,24 @@
 import "./TaskForm.css";
-import { Task } from "../../types";
+import { addTask } from "../../types";
+import { useState } from "react";
 
-const TaskForm = ({ addTask }: { addTask: (newTask: Task) => void }) => {
+const TaskForm = ({ addTask }: { addTask: addTask }) => {
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const taskInput = (e.target as HTMLFormElement).elements.namedItem("task") as HTMLInputElement;
-    const task: string = taskInput.value;
-
-    addTask({name: task, isCompleted: false});
+    addTask({name: inputValue, isCompleted: false});
   }
 
   return (
     <form className="tasks-form" onSubmit={handleSubmit}>
       <label htmlFor="newTask">Create a new task</label>
-      <input type="text" id="newTask" name="task" placeholder="Add task" />
+      <input type="text" id="newTask" name="task" placeholder="Add task" onChange={handleChange} />
       <button type="submit">Create</button>
     </form>
   )
