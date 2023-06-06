@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "TaskContainer", "TaskForm", "TaskContainer"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
