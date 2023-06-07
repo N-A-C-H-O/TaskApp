@@ -1,9 +1,10 @@
 import "./TaskForm.css";
 import { addTask } from "../../types";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const TaskForm = ({ addTask }: { addTask: addTask }) => {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -12,7 +13,7 @@ const TaskForm = ({ addTask }: { addTask: addTask }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addTask({name: inputValue, isCompleted: false});
+    addTask({ id: uuidv4(), name: inputValue, isCompleted: false });
   }
 
   return (

@@ -1,21 +1,26 @@
 import "./TaskContainer.css";
 import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
-import { Task, addTask } from "../../types";
+import { Task, addTask, deleteTask } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
 
 const TaskContainer = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksList, setTasksList] = useState<Task[]>([]);
 
   const addTask: addTask = (newTask) => {
-    setTasks([...tasks, newTask]);
+    setTasksList([...tasksList, newTask]);
+  }
+
+  const deleteTask: deleteTask = (taskId) => {
+    const filter = tasksList.filter((task: Task) => task.id !== taskId);
+    setTasksList(filter);
   }
 
   return (
     <div className="tasks-container">
       <div className="task-list">
         {
-          tasks.map(task => <TaskItem task={task} />)
+          tasksList.map(task => <TaskItem key={task.id} task={task} deleteTask={deleteTask} />)
         }
       </div>
       <TaskForm addTask={addTask} />

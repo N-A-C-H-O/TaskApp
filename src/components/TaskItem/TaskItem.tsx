@@ -1,10 +1,12 @@
 import "./TaskItem.css";
-import { Task } from "../../types";
+import { Task, deleteTask } from "../../types";
 
-const TaskItem = ({task}: {task: Task}) => {
+const TaskItem = ({ task, deleteTask }: { task: Task, deleteTask: deleteTask }) => {
+
   return (
-    <div>
-        <p>{task.name}</p>
+    <div className="task" id={task.id}>
+      <p>{task.name}</p>
+      <button onClick={() => deleteTask(task.id)}>Delete</button>
     </div>
   )
 }
