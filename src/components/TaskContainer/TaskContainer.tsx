@@ -32,7 +32,7 @@ const TaskContainer = () => {
 
   return (
     <div className="tasks-container">
-      <div className="task-list">
+      <div className="task-list bg-black">
         {tasksList.map((task) => (
           <TaskItem key={task.id} task={task} deleteTask={deleteTask} changeStatus={changeStatus} />
         ))}
