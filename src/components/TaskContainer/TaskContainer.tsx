@@ -3,6 +3,7 @@ import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
 import { Task, addTask, changeStatus, deleteTask } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
+import { Box, Flex } from "@chakra-ui/react";
 
 const TaskContainer = () => {
   const [tasksList, setTasksList] = useState<Task[]>([]);
@@ -31,14 +32,14 @@ const TaskContainer = () => {
   };
 
   return (
-    <div className="tasks-container">
-      <div className="task-list bg-black">
+    <Flex bg="red" flexDirection="column" justify="space-between" maxH="100vh">
+      <Box bg="yellowgreen" my="50px" mx="20px" h="100%" overflowY="auto">
         {tasksList.map((task) => (
           <TaskItem key={task.id} task={task} deleteTask={deleteTask} changeStatus={changeStatus} />
         ))}
-      </div>
+      </Box>
       <TaskForm addTask={addTask} />
-    </div>
+    </Flex>
   );
 };
 
