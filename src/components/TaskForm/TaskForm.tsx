@@ -2,6 +2,7 @@ import "./TaskForm.css";
 import { addTask } from "../../types";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { AddIcon } from "@chakra-ui/icons"
 import { Box, Button, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 const TaskForm = ({ addTask }: { addTask: addTask }) => {
@@ -24,9 +25,9 @@ const TaskForm = ({ addTask }: { addTask: addTask }) => {
     <Box as="form" onSubmit={handleSubmit} bg="white" p="10px" my="10px" mx="15px" rounded="7px">
       <InputGroup>
         <InputLeftElement>
-          <Button type="submit" bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>+</Button>
+          <Button type="submit" bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>{<AddIcon/>}</Button>
         </InputLeftElement>
-        <Input type="text" value={inputValue} border="none" focusBorderColor="transparent" autoComplete="off" id="newTask" name="task" placeholder="Add task" onChange={handleChange} />
+        <Input type="text" value={inputValue} maxLength={75} border="none" focusBorderColor="transparent" autoComplete="off" id="newTask" name="task" placeholder="Add task" onChange={handleChange} />
       </InputGroup>
     </Box>
   )
