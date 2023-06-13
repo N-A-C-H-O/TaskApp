@@ -22,10 +22,10 @@ const TaskForm = ({ addTask }: { addTask: addTask }) => {
   }
 
   return (
-    <Box as="form" onSubmit={handleSubmit} bg="white" p="10px" my="10px" mx="15px" rounded="7px">
+    <Box as="form" onSubmit={handleSubmit} bg="#e9edf1" p="10px" my="10px" mx="15px" rounded="7px">
       <InputGroup>
         <InputLeftElement>
-          <Button type="submit" bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>{<AddIcon/>}</Button>
+          <Button type="submit" bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>{<AddIcon />}</Button>
         </InputLeftElement>
         <Input type="text" value={inputValue} maxLength={75} border="none" focusBorderColor="transparent" autoComplete="off" id="newTask" name="task" placeholder="Add task" onChange={handleChange} />
       </InputGroup>

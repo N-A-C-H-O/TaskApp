@@ -3,7 +3,7 @@ import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
 import { Task, addTask, changeStatus, deleteTask } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box, Flex, Text } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Text } from "@chakra-ui/react";
 
 const TaskContainer = () => {
   const [tasksList, setTasksList] = useState<Task[]>([]);
@@ -32,8 +32,8 @@ const TaskContainer = () => {
   };
 
   return (
-    <Flex bg="red" flexDirection="column" justify="space-between" maxH="100vh">
-      <Box bg="yellowgreen" my="50px" mx="20px" h="100%" overflowY="auto">
+    <Flex bg="#acafaf" flexDirection="column" justify="space-between" maxH="100vh">
+      <Box my="50px" mx="20px" h="100%" overflowY="auto">
         {tasksList.filter(task => {
           return !task.isCompleted
         }).map((task) => (
@@ -47,7 +47,8 @@ const TaskContainer = () => {
             <Accordion defaultIndex={[0]} allowMultiple borderColor="transparent">
               <AccordionItem>
                 <h2>
-                  <AccordionButton>
+                  <AccordionButton bg="#e9edf1" _hover={{ backgroundColor: "#e0e6ef" }}>
+                    <AccordionIcon mr="8px" />
                     <Text>Completed</Text>
                   </AccordionButton>
                 </h2>
