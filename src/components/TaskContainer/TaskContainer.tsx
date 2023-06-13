@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Task, addTask, changeStatus, deleteTask } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Text } from "@chakra-ui/react";
+import BackgroundSelector from "../BackgroundSelector/BackgroundSelector";
 
 const TaskContainer = () => {
   const [tasksList, setTasksList] = useState<Task[]>([]);
+  const [background, setBackground] = useState("");
 
   const addTask: addTask = (newTask) => {
     setTasksList([...tasksList, newTask]);
@@ -26,13 +28,18 @@ const TaskContainer = () => {
     });
   };
 
+  const changeBackground = (newBackground: string): void => {
+    setBackground(newBackground);
+  }
+
   const deleteTask: deleteTask = (taskId) => {
     const filter = tasksList.filter((task: Task) => task.id !== taskId);
     setTasksList(filter);
   };
 
   return (
-    <Flex bg="#acafaf" flexDirection="column" justify="space-between" maxH="100vh">
+    <Flex bg={background ? background : "#acafaf"} flexDirection="column" justify="space-between" maxH="100vh">
+      <BackgroundSelector changeBackground={changeBackground} />
       <Box my="50px" mx="20px" h="100%" overflowY="auto">
         {tasksList.filter(task => {
           return !task.isCompleted
