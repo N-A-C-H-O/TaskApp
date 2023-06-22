@@ -10,8 +10,7 @@ const TaskItem = ({ task, deleteTask, changeStatus }: { task: Task; deleteTask: 
 
   return (
     <Flex id={task.id} bg="#e9edf1" justify="space-between" maxW="100%" align="center" py="10px" px="15px" m="10px" rounded="7px">
-      <Checkbox isChecked={task.isCompleted} onChange={() => changeStatus(task.id)} style={task.isCompleted ? styleCompleted : {}} colorScheme="green" sx={{ borderColor: "#a9abad" }}>
-        {" "}
+      <Checkbox wordBreak="break-word" isChecked={task.isCompleted} onChange={() => changeStatus(task.id)} style={task.isCompleted ? styleCompleted : {}} colorScheme="green" sx={{ borderColor: "#a9abad" }}>
         {task.name}
       </Checkbox>
       <Button onClick={() => deleteTask(task.id)} color="#7a7c7f" bg="transparent" _hover={{ backgroundColor: "trasnparent" }} _active={{ backgroundColor: "trasnparent" }}>
