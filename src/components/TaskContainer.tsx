@@ -1,10 +1,9 @@
-import "./TaskContainer.css";
-import TaskForm from "../TaskForm/TaskForm";
+import TaskForm from "./TaskForm";
 import { useState } from "react";
-import { Task, addTask, changeStatus, deleteTask } from "../../types";
-import TaskItem from "../TaskItem/TaskItem";
+import { Task, addTask, changeStatus, deleteTask } from "../types";
+import TaskItem from "./TaskItem";
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Text } from "@chakra-ui/react";
-import BackgroundSelector from "../BackgroundSelector/BackgroundSelector";
+import BackgroundSelector from "./BackgroundSelector";
 
 const TaskContainer = () => {
   const [tasksList, setTasksList] = useState<Task[]>([]);
@@ -30,7 +29,7 @@ const TaskContainer = () => {
 
   const changeBackground = (newBackground: string): void => {
     setBackground(newBackground);
-  }
+  };
 
   const deleteTask: deleteTask = (taskId) => {
     const filter = tasksList.filter((task: Task) => task.id !== taskId);
@@ -41,15 +40,16 @@ const TaskContainer = () => {
     <Flex bg={background ? background : "#acafaf"} flexDirection="column" justify="space-between" maxH="100vh">
       <BackgroundSelector changeBackground={changeBackground} />
       <Box my="50px" mx="20px" h="100%" overflowY="auto">
-        {tasksList.filter(task => {
-          return !task.isCompleted
-        }).map((task) => (
-          <TaskItem key={task.id} task={task} deleteTask={deleteTask} changeStatus={changeStatus} />
-        ))}
-        {
-          tasksList.some(task => {
-            return task.isCompleted
-          }) &&
+        {tasksList
+          .filter((task) => {
+            return !task.isCompleted;
+          })
+          .map((task) => (
+            <TaskItem key={task.id} task={task} deleteTask={deleteTask} changeStatus={changeStatus} />
+          ))}
+        {tasksList.some((task) => {
+          return task.isCompleted;
+        }) && (
           <>
             <Accordion defaultIndex={[0]} allowMultiple borderColor="transparent">
               <AccordionItem>
@@ -60,19 +60,21 @@ const TaskContainer = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  {tasksList.filter(task => {
-                    return task.isCompleted
-                  }).map((task) => (
-                    <TaskItem key={task.id} task={task} deleteTask={deleteTask} changeStatus={changeStatus} />
-                  ))}
+                  {tasksList
+                    .filter((task) => {
+                      return task.isCompleted;
+                    })
+                    .map((task) => (
+                      <TaskItem key={task.id} task={task} deleteTask={deleteTask} changeStatus={changeStatus} />
+                    ))}
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
           </>
-        }
+        )}
       </Box>
       <TaskForm addTask={addTask} />
-    </Flex >
+    </Flex>
   );
 };
 
