@@ -4,8 +4,10 @@ export interface Task {
   isCompleted: boolean;
 }
 
-export type addTask = (newTask: Task) => void;
+export type AddTask = (newTask: Task) => void;
 
-export type deleteTask = (taskId: string) => void;
+export type DeleteTask = (taskId: string) => void;
 
-export type changeStatus = (taskId: string) => void;
+export type ChangeStatus = (taskId: string) => void;
+
+export type ChangeBackground = (newBackground: string) => void;

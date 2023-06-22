@@ -1,6 +1,7 @@
 import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box } from "@chakra-ui/react";
+import { ChangeBackground } from "../types";
 
-const BackgroundSelector = ({ changeBackground }: { changeBackground: (newBackground: string) => void }) => {
+const BackgroundSelector = ({ changeBackground }: { changeBackground: ChangeBackground }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const colors: string[] = [
