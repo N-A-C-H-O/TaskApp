@@ -1,8 +1,8 @@
-import { Task, changeStatus, deleteTask } from "../types";
-import { CloseIcon } from "@chakra-ui/icons";
-import { Button, Checkbox, Flex } from "@chakra-ui/react";
+import { Task, ChangeStatus, DeleteTask } from "../types";
+import { IoClose } from "react-icons/io5";
+import { Button, Checkbox, Flex, Icon } from "@chakra-ui/react";
 
-const TaskItem = ({ task, deleteTask, changeStatus }: { task: Task; deleteTask: deleteTask; changeStatus: changeStatus }) => {
+const TaskItem = ({ task, deleteTask, changeStatus }: { task: Task; deleteTask: DeleteTask; changeStatus: ChangeStatus }) => {
   const styleCompleted = {
     textDecoration: "line-through",
     color: "#adb0b3",
@@ -21,7 +21,7 @@ const TaskItem = ({ task, deleteTask, changeStatus }: { task: Task; deleteTask: 
         {task.name}
       </Checkbox>
       <Button onClick={() => deleteTask(task.id)} color="#7a7c7f" bg="transparent" _hover={{ backgroundColor: "trasnparent" }} _active={{ backgroundColor: "trasnparent" }}>
-        {<CloseIcon />}
+        <Icon as={IoClose} fontSize={30} />
       </Button>
     </Flex>
   );

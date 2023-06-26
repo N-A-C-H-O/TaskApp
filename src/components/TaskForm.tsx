@@ -1,10 +1,10 @@
-import { addTask } from "../types";
+import { AddTask } from "../types";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, Button, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { IoAdd } from "react-icons/io5";
+import { Box, Button, Input, InputGroup, InputLeftElement, Icon } from "@chakra-ui/react";
 
-const TaskForm = ({ addTask }: { addTask: addTask }) => {
+const TaskForm = ({ addTask }: { addTask: AddTask }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const TaskForm = ({ addTask }: { addTask: addTask }) => {
       <InputGroup>
         <InputLeftElement>
           <Button type="submit" bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>
-            {<AddIcon />}
+            <Icon as={IoAdd} fontSize={25} />
           </Button>
         </InputLeftElement>
         <Input type="text" value={inputValue} maxLength={90} border="none" focusBorderColor="transparent" autoComplete="off" id="newTask" name="task" placeholder="Add task" onChange={handleChange} />

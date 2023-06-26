@@ -1,4 +1,5 @@
-import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box } from "@chakra-ui/react";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box, Icon } from "@chakra-ui/react";
 import { ChangeBackground } from "../types";
 
 const BackgroundSelector = ({ changeBackground }: { changeBackground: ChangeBackground }) => {
@@ -29,7 +30,8 @@ const BackgroundSelector = ({ changeBackground }: { changeBackground: ChangeBack
   };
 
   return (
-    <Button onClick={onOpen}>
+    <Button onClick={onOpen} bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>
+      <Icon as={HiDotsHorizontal} fontSize={25} />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
