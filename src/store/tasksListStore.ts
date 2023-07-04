@@ -10,6 +10,7 @@ interface TasksListState {
     selectOne: (id: string) => void;
     addTask: (newTask: Task) => void;
     deleteTask: (taskId: string) => void;
+    changeTaskStatus: (taskId: string) => void;
 }
 
 export const useTasksListStore = create<TasksListState>((set, get) => ({
@@ -55,6 +56,23 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
                 ...selected,
                 tasks: filter,
                 totalTasks: state.selected.totalTasks--
+            }
+        }));
+    },
+    changeTaskStatus: (taskId) => {
+        const { selected } = get();
+        set((state) => ({
+            selected: {
+                ...selected,
+                tasks: state.selected.tasks.map((task) => {
+                    if (task.id === taskId) {
+                        return {
+                            ...task,
+                            isCompleted: !task.isCompleted
+                        }
+                    }
+                    return task;
+                })
             }
         }));
     }

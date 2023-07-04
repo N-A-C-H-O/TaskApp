@@ -1,8 +1,11 @@
-import { Task, ChangeStatus, DeleteTask } from "../types";
+import { Task } from "../types";
+import { useTasksListStore } from "../store/tasksListStore";
 import { IoClose } from "react-icons/io5";
 import { Button, Checkbox, Flex, Icon } from "@chakra-ui/react";
 
-const TaskItem = ({ task, deleteTask, changeStatus }: { task: Task; deleteTask: DeleteTask; changeStatus: ChangeStatus }) => {
+const TaskItem = ({ task }: { task: Task }) => {
+  const { deleteTask, changeTaskStatus } = useTasksListStore();
+  
   const styleCompleted = {
     textDecoration: "line-through",
     color: "#adb0b3",
@@ -13,7 +16,7 @@ const TaskItem = ({ task, deleteTask, changeStatus }: { task: Task; deleteTask: 
       <Checkbox
         wordBreak="break-word"
         isChecked={task.isCompleted}
-        onChange={() => changeStatus(task.id)}
+        onChange={() => changeTaskStatus(task.id)}
         style={task.isCompleted ? styleCompleted : {}}
         colorScheme="green"
         sx={{ borderColor: "#a9abad" }}

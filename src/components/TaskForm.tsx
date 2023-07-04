@@ -1,11 +1,13 @@
-import { AddTask } from "../types";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IoAdd } from "react-icons/io5";
 import { Box, Button, Input, InputGroup, InputLeftElement, Icon } from "@chakra-ui/react";
+import { useTasksListStore } from "../store/tasksListStore";
 
-const TaskForm = ({ addTask }: { addTask: AddTask }) => {
+const TaskForm = () => {
   const [inputValue, setInputValue] = useState("");
+
+  const { addTask } = useTasksListStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

@@ -1,5 +1,5 @@
 import { Flex, Heading, Image } from "@chakra-ui/react"
-import ListContainer from "./TaskListContainer";
+import TaskListContainer from "./TaskListContainer";
 
 const Navbar = () => {
   return (
@@ -8,7 +8,7 @@ const Navbar = () => {
             <Image src="https://xsgames.co/randomusers/assets/avatars/male/29.jpg" rounded="50%" width="4em" ml="10px" />
             <Heading as="h4" fontSize="1.3em">John Doe</Heading>
         </Flex>
-        <ListContainer />
+        <TaskListContainer />
     </Flex>
   )
 }
