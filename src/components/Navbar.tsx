@@ -1,5 +1,5 @@
 import { Flex, Heading, Image } from "@chakra-ui/react"
-import ListContainer from "./ListContainer";
+import ListContainer from "./TaskListContainer";
 
 const Navbar = () => {
   return (

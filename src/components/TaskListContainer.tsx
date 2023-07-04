@@ -2,9 +2,9 @@ import { Box, Button, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { CreateList, List } from "../types";
 import { v4 as uuidv4 } from "uuid";
-import ListItem from "./ListItem";
+import ListItem from "./TaskListItem";
 
-const ListContainer = () => {
+const TaskListContainer = () => {
   const [lists, setLists] = useState<List[]>([]);
 
   const createList: CreateList = () => {
@@ -31,4 +31,4 @@ const ListContainer = () => {
   )
 }
 
-export default ListContainer;
+export default TaskListContainer;

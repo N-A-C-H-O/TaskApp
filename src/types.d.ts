@@ -4,9 +4,10 @@ export interface Task {
   isCompleted: boolean;
 }
 
-export interface List {
+export interface TaskList {
   id: string;
   name: string;
+  tasks: Task[];
   totalTasks: number;
 }
 
