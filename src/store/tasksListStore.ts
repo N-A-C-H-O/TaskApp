@@ -13,10 +13,17 @@ interface TasksListState {
     changeTaskStatus: (taskId: string) => void;
 }
 
+const HomeId = uuidv4();
+
 export const useTasksListStore = create<TasksListState>((set, get) => ({
-    items: [],
+    items: [{
+        id: HomeId,
+        name: "Home",
+        totalTasks: 0,
+        tasks: []
+    }],
     selected: {
-        id: uuidv4(),
+        id: HomeId,
         name: "Home",
         totalTasks: 0,
         tasks: []
@@ -33,30 +40,40 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
     },
     selectOne: (id) => {
         const { items } = get();
-        const selected = items.find((item) => item.id === id);
+        const newSelected = items.find((item) => item.id === id);
         set(() => ({
-            selected
+            selected: newSelected
         }));
     },
     addTask: (newTask) => {
-        const { selected } = get();
-        set((state) => ({
-            selected: {
-                ...selected,
-                tasks: [...state.selected.tasks, newTask],
-                totalTasks: state.selected.totalTasks++
-            }
+        const { items, selected } = get();
+
+        console.log(items, selected)
+
+        const taskList = items.find((item) => item.id === selected.id);
+
+        if (taskList !== undefined) {
+            taskList.tasks = [...taskList.tasks, newTask];
+            taskList.totalTasks+= 1;
+        };
+
+        set(() => ({
+            selected: taskList
         }));
     },
     deleteTask: (taskId) => {
-        const { selected } = get();
-        const filter = selected.tasks.filter((item) => item.id !== taskId);
-        set((state) => ({
-            selected: {
-                ...selected,
-                tasks: filter,
-                totalTasks: state.selected.totalTasks--
-            }
+        const { items, selected } = get();
+
+        const taskList = items.find((item) => item.id === selected.id);
+
+        if (taskList !== undefined) {
+            const filter = taskList?.tasks.filter((item) => item.id !== taskId);
+            taskList.tasks = filter;
+            taskList.totalTasks-= 1;
+        }
+
+        set(() => ({
+            selected: taskList
         }));
     },
     changeTaskStatus: (taskId) => {

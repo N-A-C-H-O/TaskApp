@@ -1,8 +1,7 @@
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box, Icon } from "@chakra-ui/react";
-import { ChangeBackground } from "../types";
 
-const BackgroundSelector = ({ changeBackground }: { changeBackground: ChangeBackground }) => {
+const BackgroundSelector = ({ changeBackground }: { changeBackground: (newBackground: string) => void }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const colors: string[] = [
@@ -39,8 +38,8 @@ const BackgroundSelector = ({ changeBackground }: { changeBackground: ChangeBack
           <DrawerHeader>Themes</DrawerHeader>
           <DrawerBody>
             <Flex flexWrap="wrap" gap="10px" justify="center">
-              {colors.map((color) => {
-                return <Box bg={color} w="50px" h="50px" cursor="pointer" onClick={() => handleClick(color)}></Box>;
+              {colors.map((color, index) => {
+                return <Box key={index} bg={color} w="50px" h="50px" cursor="pointer" onClick={() => handleClick(color)}></Box>;
               })}
             </Flex>
           </DrawerBody>

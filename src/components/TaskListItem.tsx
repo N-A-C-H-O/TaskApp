@@ -12,6 +12,7 @@ const TaskListItem = ({taskList}: {taskList: TaskList}) => {
       <Flex align="center" gap="10px">
         <Icon as={IoList} fontSize={20}></Icon>
         <Text>{taskList.name}</Text>
+        <Text>{taskList.totalTasks}</Text>
       </Flex>
     </Box>
   );
