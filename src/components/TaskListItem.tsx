@@ -1,20 +1,29 @@
-import { Box, Flex, Icon, Text } from "@chakra-ui/react";
+import { Flex, Icon, Text } from "@chakra-ui/react";
 import { IoList } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { TaskList } from "../types";
 import { useTasksListStore } from "../store/tasksListStore";
 
 const TaskListItem = ({taskList}: {taskList: TaskList}) => {
 
-  const { selectOne } = useTasksListStore();
+  const { selectOne, deleteOne } = useTasksListStore();
 
   return (
-    <Box bg="yellow" mb="20px" p="8px" cursor="pointer" onClick={() => selectOne(taskList.id)}>
+    <Flex align="center" justify="space-between" bg="yellow" mb="20px" p="8px" cursor="pointer" onClick={() => selectOne(taskList.id)}>
       <Flex align="center" gap="10px">
         <Icon as={IoList} fontSize={20}></Icon>
         <Text>{taskList.name}</Text>
-        <Text>{taskList.totalTasks}</Text>
       </Flex>
-    </Box>
+      <Flex align="center" gap="10px">
+        <Text>{taskList.totalTasks}</Text>
+        {
+          taskList.name !== "Home" && <Icon onClick={(e) => {
+            deleteOne(taskList.id);
+            e.stopPropagation();
+          }} as={IoClose} fontSize={20}></Icon>
+        }
+      </Flex>
+    </Flex>
   );
 };
 

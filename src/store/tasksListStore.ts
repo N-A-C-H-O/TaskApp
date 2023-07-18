@@ -7,6 +7,7 @@ interface TasksListState {
   selected: TaskList;
   createOne: (taskList: TaskList) => void;
   deleteOne: (id: string) => void;
+  changeName: (newName: string) => void;
   selectOne: (id: string) => void;
   addTask: (newTask: Task) => void;
   deleteTask: (taskId: string) => void;
@@ -24,7 +25,7 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
       tasks: [],
     },
   ],
-  selected: {
+  selected: undefined || {
     id: HomeId,
     name: "Home",
     totalTasks: 0,
@@ -35,11 +36,25 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
       items: [...state.items, taskList],
     })),
   deleteOne: (id) => {
-    const { items } = get();
+    const { items, selectOne } = get();
     const filter = items.filter((item) => item.id !== id);
+
+    selectOne(HomeId);
 
     set(() => ({
       items: filter,
+    }));
+  },
+  changeName: (newName) => {
+    const { items, selected } = get();
+    const taskList = items.find((item) => item.id === selected.id);
+
+    if (taskList === undefined) return;
+    
+    taskList.name = newName;
+
+    set(() => ({
+      selected: taskList
     }));
   },
   selectOne: (id) => {
@@ -54,9 +69,7 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
 
     const taskList = items.find((item) => item.id === selected.id);
 
-    if (taskList === undefined) {
-      return;
-    }
+    if (taskList === undefined) return;
 
     taskList.tasks = [...taskList.tasks, newTask];
     taskList.totalTasks += 1;
@@ -70,9 +83,7 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
 
     const taskList = items.find((item) => item.id === selected.id);
 
-    if (taskList === undefined) {
-      return;
-    }
+    if (taskList === undefined) return;
 
     const filter = taskList.tasks.filter((item) => item.id !== taskId);
     taskList.tasks = filter;
@@ -87,9 +98,7 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
 
     const taskList = items.find((item) => item.id === selected.id);
 
-    if (taskList === undefined) {
-      return;
-    }
+    if (taskList === undefined) return;
 
     taskList.tasks = taskList.tasks.map((task) => {
       if (task.id === taskId) {
