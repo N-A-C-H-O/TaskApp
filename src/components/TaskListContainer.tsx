@@ -11,6 +11,7 @@ const TaskListContainer = () => {
     const newList: TaskList = {
       id: uuidv4(),
       name: "New list",
+      icon: "📝",
       totalTasks: 0,
       tasks: []
     }

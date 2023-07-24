@@ -2,21 +2,16 @@ import { Flex, Icon, Text } from "@chakra-ui/react";
 import { IoClose } from "react-icons/io5";
 import { TaskList } from "../types";
 import { useTasksListStore } from "../store/tasksListStore";
-import { useState } from "react";
-import EmojiSelector from "./EmojiSelector";
 
 const TaskListItem = ({ taskList }: { taskList: TaskList }) => {
-  const [isEmojiPicker, setIsEmojiPicker] = useState(false);
-  const [inputEmoji, setInputEmoji] = useState("📝");
-
   const { selectOne, deleteOne } = useTasksListStore();
 
   return (
     <>
       <Flex align="center" justify="space-between" bg="yellow" mb="20px" p="8px" cursor="pointer" onClick={() => selectOne(taskList.id)}>
         <Flex align="center" gap="10px">
-          <Text onClick={() => setIsEmojiPicker(!isEmojiPicker)} fontSize={20}>
-            {inputEmoji}
+          <Text fontSize={20}>
+            {taskList.icon}
           </Text>
           <Text>{taskList.name}</Text>
         </Flex>
@@ -34,7 +29,6 @@ const TaskListItem = ({ taskList }: { taskList: TaskList }) => {
           )}
         </Flex>
       </Flex>
-      {isEmojiPicker && <EmojiSelector setInputEmoji={setInputEmoji} isEmojiPicker={isEmojiPicker} setIsEmojiPicker={setIsEmojiPicker} />}
     </>
   );
 };

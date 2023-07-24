@@ -7,6 +7,7 @@ export interface Task {
 export interface TaskList {
   id: string;
   name: string;
+  icon: string;
   tasks: Task[];
   totalTasks: number;
 }

@@ -8,29 +8,26 @@ interface TasksListState {
   createOne: (taskList: TaskList) => void;
   deleteOne: (id: string) => void;
   changeName: (newName: string) => void;
+  changeIcon: (newIcon: string) => void;
   selectOne: (id: string) => void;
   addTask: (newTask: Task) => void;
   deleteTask: (taskId: string) => void;
   changeTaskStatus: (taskId: string) => void;
 }
 
-const HomeId = uuidv4();
-
-export const useTasksListStore = create<TasksListState>((set, get) => ({
-  items: [
-    {
-      id: HomeId,
+const HomeTaskList: TaskList = {
+      id: uuidv4(),
       name: "Home",
       totalTasks: 0,
       tasks: [],
-    },
+      icon: "🏠",
+};
+
+export const useTasksListStore = create<TasksListState>((set, get) => ({
+  items: [
+    HomeTaskList
   ],
-  selected: undefined || {
-    id: HomeId,
-    name: "Home",
-    totalTasks: 0,
-    tasks: [],
-  },
+  selected: HomeTaskList,
   createOne: (taskList) =>
     set((state) => ({
       items: [...state.items, taskList],
@@ -39,7 +36,7 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
     const { items, selectOne } = get();
     const filter = items.filter((item) => item.id !== id);
 
-    selectOne(HomeId);
+    selectOne(HomeTaskList.id);
 
     set(() => ({
       items: filter,
@@ -52,6 +49,18 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
     if (taskList === undefined) return;
     
     taskList.name = newName;
+
+    set(() => ({
+      selected: taskList
+    }));
+  },
+  changeIcon: (newIcon) => {
+    const { items, selected } = get();
+    const taskList = items.find((item) => item.id === selected.id);
+
+    if (taskList === undefined) return;
+
+    taskList.icon = newIcon;
 
     set(() => ({
       selected: taskList
