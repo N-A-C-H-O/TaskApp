@@ -20,34 +20,43 @@ const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: st
     <>
       <Flex justify="space-between" align="center" w="85%" mx="auto" mt="20px">
         <Flex width="40%" alignItems="center" gap="20px" py="5px">
-          <Text onClick={() => setIsEmojiPicker(!isEmojiPicker)} fontSize={30} cursor="pointer">
-            {selected.icon}
-          </Text>
           {selected.name === "Home" ? (
-            <Heading as="h3" fontSize={35} padding={0}>
-              {selected.name}
-            </Heading>
-          ) : isEditing ? (
             <>
-              <Input
-                onChange={handleChange}
-                maxLength={25}
-                onBlur={() => setIsEditing(false)}
-                width="100%"
-                placeholder={selected.name}
-                color="white"
-                border="none"
-                fontSize={35}
-                focusBorderColor="transparent"
-                fontWeight="bold"
-                padding={0}
-              />
+              <Text fontSize={30}>
+                {selected.icon}
+              </Text>
+              <Heading as="h3" fontSize={35} padding={0}>
+                {selected.name}
+              </Heading>
             </>
-          ) : (
-            <Heading as="h3" fontSize={35} padding={0} onClick={() => setIsEditing(true)}>
-              {selected.name}
-            </Heading>
-          )}
+          ) : 
+            <>
+              <Text onClick={() => setIsEmojiPicker(!isEmojiPicker)} fontSize={30} cursor="pointer">
+                {selected.icon}
+              </Text>
+              {
+                isEditing ? (
+                    <Input
+                      onChange={handleChange}
+                      maxLength={25}
+                      onBlur={() => setIsEditing(false)}
+                      width="100%"
+                      placeholder={selected.name}
+                      color="white"
+                      border="none"
+                      fontSize={35}
+                      focusBorderColor="transparent"
+                      fontWeight="bold"
+                      padding={0}
+                    />
+                ) : (
+                  <Heading as="h3" fontSize={35} padding={0} onClick={() => setIsEditing(true)}>
+                    {selected.name}
+                  </Heading>
+                )
+              }
+            </>
+          }
         </Flex>
         <BackgroundSelector changeBackground={changeBackground} />
       </Flex>
