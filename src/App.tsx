@@ -1,15 +1,16 @@
 import Home from "./components/Home";
 import Login from "./components/Login";
-import ProtectedRoute from "./components/helper/ProtectedRoute";
+// import ProtectedRoute from "./components/helper/ProtectedRoute";
 import { Route } from "wouter";
 
 function App() {
 
   return(
     <div>
-      <ProtectedRoute>
-        <Route path="/"><Home/></Route>
-      </ProtectedRoute>
+      {/* <ProtectedRoute>
+        
+      </ProtectedRoute> */}
+      <Route path="/"><Home/></Route>
       <Route path="/login"><Login/></Route>
     </div>
   )
