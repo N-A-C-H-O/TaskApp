@@ -16,17 +16,15 @@ interface TasksListState {
 }
 
 const HomeTaskList: TaskList = {
-      id: uuidv4(),
-      name: "Home",
-      totalTasks: 0,
-      tasks: [],
-      icon: "🏠",
+  id: uuidv4(),
+  name: "Home",
+  totalTasks: 0,
+  tasks: [],
+  icon: "🏠",
 };
 
 export const useTasksListStore = create<TasksListState>((set, get) => ({
-  items: [
-    HomeTaskList
-  ],
+  items: [HomeTaskList],
   selected: HomeTaskList,
   createOne: (taskList) =>
     set((state) => ({
@@ -47,11 +45,11 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
     const taskList = items.find((item) => item.id === selected.id);
 
     if (taskList === undefined) return;
-    
+
     taskList.name = newName;
 
     set(() => ({
-      selected: taskList
+      selected: taskList,
     }));
   },
   changeIcon: (newIcon) => {
@@ -63,7 +61,7 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
     taskList.icon = newIcon;
 
     set(() => ({
-      selected: taskList
+      selected: taskList,
     }));
   },
   selectOne: (id) => {

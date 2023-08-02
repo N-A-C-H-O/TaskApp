@@ -1,16 +1,36 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config";
+import { User } from "../types";
+import { useCurrentUserStore } from "../store/currentUserStore";
+import { useLocation } from "wouter";
 
-import { Box, Flex, Button, Icon } from "@chakra-ui/react"
+import { Flex, Button, Icon } from "@chakra-ui/react"
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const { setOne } = useCurrentUserStore();
+
+  const [, setLocation ] = useLocation();
+
   const provider = new GoogleAuthProvider();
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = async () => {
     const response = await signInWithPopup(auth, provider);
+    const data = response.user;
 
-    console.log(response.user);
+    if (data.displayName === null || data.email === null || data.photoURL === null) return false;
+
+    const user: User = {
+      id: data.uid,
+      name: data.displayName.split(" ")[0],
+      lastName: data.displayName.split(" ")[data.displayName.length - 1],
+      email: data.email,
+      profilePhoto: data.photoURL
+    }
+
+    setOne(user);
+
+    setLocation("/");
   }
 
   return (

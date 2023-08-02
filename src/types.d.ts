@@ -11,3 +11,11 @@ export interface TaskList {
   tasks: Task[];
   totalTasks: number;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  lastName: string;
+  email: string;
+  profilePhoto: string;
+}
