@@ -1,31 +1,34 @@
 import TaskForm from './TaskForm';
-import { useState } from 'react';
 import TaskItem from './TaskItem';
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Text } from '@chakra-ui/react';
 import TaskNavbar from './TaskNavbar';
 import { useTasksListStore } from '../store/tasksListStore';
+import { useBackgroundListStore } from '../store/backgroundStore';
 
 const TaskContainer = () => {
-  const [background, setBackground] = useState('');
-
-  const { selected } = useTasksListStore();
-
-  const changeBackground = (newBackground: string): void => {
-    setBackground(newBackground);
-  };
+  const { selected: selectedTaskList } = useTasksListStore();
+  const { selected: selectedBackground } = useBackgroundListStore();
 
   return (
-    <Flex bg={background ? background : '#acafaf'} w={'100%'} flex={{ md: 2, lg: 3, xl: 4, '2xl': 5 }} flexDirection="column" justify="space-between">
-      <TaskNavbar changeBackground={changeBackground} />
+    <Flex
+      w={'100%'}
+      backgroundImage={selectedBackground}
+      backgroundPosition={'center'}
+      backgroundSize={'cover'}
+      flex={{ md: 2, lg: 3, xl: 4, '2xl': 5 }}
+      flexDirection="column"
+      justify="space-between"
+    >
+      <TaskNavbar />
       <Box my="50px" mx="20px" h="100%" overflowY="auto">
-        {selected.tasks
+        {selectedTaskList.tasks
           .filter(task => {
             return !task.isCompleted;
           })
           .map(task => (
             <TaskItem key={task.id} task={task} />
           ))}
-        {selected.tasks.some(task => {
+        {selectedTaskList.tasks.some(task => {
           return task.isCompleted;
         }) && (
           <>
@@ -38,7 +41,7 @@ const TaskContainer = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  {selected.tasks
+                  {selectedTaskList.tasks
                     .filter(task => {
                       return task.isCompleted;
                     })

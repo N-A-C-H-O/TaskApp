@@ -4,7 +4,7 @@ import { useTasksListStore } from '../store/tasksListStore';
 import { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 
-const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: string) => void }) => {
+const TaskNavbar = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isEmojiPicker, setIsEmojiPicker] = useState(false);
 
@@ -54,7 +54,7 @@ const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: st
             </>
           )}
         </Flex>
-        <BackgroundSelector changeBackground={changeBackground} />
+        <BackgroundSelector />
       </Flex>
       {isEmojiPicker && (
         <Box ml="15px">
