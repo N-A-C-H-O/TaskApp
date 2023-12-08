@@ -19,7 +19,7 @@ const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: st
   return (
     <>
       <Flex justify="space-between" align="center" w="85%" mx="auto" mt="20px">
-        <Flex width="40%" alignItems="center" gap="20px" py="5px">
+        <Flex width="100%" alignItems="center" gap="20px" py="5px">
           {selected.name === 'Home' ? (
             <>
               <Text fontSize={30}>{selected.icon}</Text>

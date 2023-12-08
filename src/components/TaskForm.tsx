@@ -23,7 +23,7 @@ const TaskForm = () => {
   };
 
   return (
-    <Box as="form" onSubmit={handleSubmit} bg="#e9edf1" p="7px" mb="55px" mx="50px" rounded="7px">
+    <Box as="form" onSubmit={handleSubmit} bg="#e9edf1" p="7px" mb={{ base: 8, md: 12, lg: 14 }} mx={{ base: 5, md: 12, lg: 14 }} rounded="7px">
       <InputGroup>
         <InputLeftElement>
           <Button type="submit" bg="transparent" _hover={{ backgroundColor: 'tranparent' }} _focus={{ backgroundColor: 'transparent' }}>
