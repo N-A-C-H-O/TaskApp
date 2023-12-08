@@ -1,26 +1,26 @@
-import { HiDotsHorizontal } from "react-icons/hi";
-import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box, Icon } from "@chakra-ui/react";
+import { HiDotsHorizontal } from 'react-icons/hi';
+import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box, Icon } from '@chakra-ui/react';
 
 const BackgroundSelector = ({ changeBackground }: { changeBackground: (newBackground: string) => void }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const colors: string[] = [
-    "#acafaf",
-    "#081e0d",
-    "#e51d1b",
-    "#67c74f",
-    "#40299e",
-    "#86af84",
-    "#802b1e",
-    "#ec9599",
-    "#abe53d",
-    "#72ccfcff",
-    "#abe3d9ff",
-    "#657710ff",
-    "#edc662",
-    "#0b9dcfff",
-    "#fb6ecaff",
-    "#2b40c2",
+    '#acafaf',
+    '#081e0d',
+    '#e51d1b',
+    '#67c74f',
+    '#40299e',
+    '#86af84',
+    '#802b1e',
+    '#ec9599',
+    '#abe53d',
+    '#72ccfcff',
+    '#abe3d9ff',
+    '#657710ff',
+    '#edc662',
+    '#0b9dcfff',
+    '#fb6ecaff',
+    '#2b40c2'
   ];
 
   const handleClick = (newBackground: string): void => {
@@ -29,7 +29,7 @@ const BackgroundSelector = ({ changeBackground }: { changeBackground: (newBackgr
   };
 
   return (
-    <Button onClick={onOpen} bg="transparent" _hover={{ backgroundColor: "tranparent" }} _focus={{ backgroundColor: "transparent" }}>
+    <Button onClick={onOpen} bg="transparent" _hover={{ backgroundColor: 'tranparent' }} _focus={{ backgroundColor: 'transparent' }}>
       <Icon as={HiDotsHorizontal} fontSize={25} />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />

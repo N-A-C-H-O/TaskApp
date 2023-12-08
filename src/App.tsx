@@ -1,19 +1,7 @@
-import Home from "./components/Home";
-import Login from "./components/Login";
-// import ProtectedRoute from "./components/helper/ProtectedRoute";
-import { Route } from "wouter";
+import Home from './components/Home';
 
 function App() {
-
-  return(
-    <div>
-      {/* <ProtectedRoute>
-        
-      </ProtectedRoute> */}
-      <Route path="/"><Home/></Route>
-      <Route path="/login"><Login/></Route>
-    </div>
-  )
+  return <Home />;
 }
 
 export default App;

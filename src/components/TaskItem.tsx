@@ -1,14 +1,14 @@
-import { Task } from "../types";
-import { useTasksListStore } from "../store/tasksListStore";
-import { IoClose } from "react-icons/io5";
-import { Button, Checkbox, Flex, Icon } from "@chakra-ui/react";
+import { Task } from '../types';
+import { useTasksListStore } from '../store/tasksListStore';
+import { IoClose } from 'react-icons/io5';
+import { Button, Checkbox, Flex, Icon } from '@chakra-ui/react';
 
 const TaskItem = ({ task }: { task: Task }) => {
   const { deleteTask, changeTaskStatus } = useTasksListStore();
-  
+
   const styleCompleted = {
-    textDecoration: "line-through",
-    color: "#adb0b3",
+    textDecoration: 'line-through',
+    color: '#adb0b3'
   };
 
   return (
@@ -19,11 +19,11 @@ const TaskItem = ({ task }: { task: Task }) => {
         onChange={() => changeTaskStatus(task.id)}
         style={task.isCompleted ? styleCompleted : {}}
         colorScheme="green"
-        sx={{ borderColor: "#a9abad" }}
+        sx={{ borderColor: '#a9abad' }}
       >
         {task.name}
       </Checkbox>
-      <Button onClick={() => deleteTask(task.id)} color="#7a7c7f" bg="transparent" _hover={{ backgroundColor: "trasnparent" }} _active={{ backgroundColor: "trasnparent" }}>
+      <Button onClick={() => deleteTask(task.id)} color="#7a7c7f" bg="transparent" _hover={{ backgroundColor: 'trasnparent' }} _active={{ backgroundColor: 'trasnparent' }}>
         <Icon as={IoClose} fontSize={30} />
       </Button>
     </Flex>

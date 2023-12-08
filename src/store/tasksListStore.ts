@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { Task, TaskList } from "../types";
-import { v4 as uuidv4 } from "uuid";
+import { create } from 'zustand';
+import { Task, TaskList } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 interface TasksListState {
   items: TaskList[];
@@ -17,64 +17,64 @@ interface TasksListState {
 
 const HomeTaskList: TaskList = {
   id: uuidv4(),
-  name: "Home",
+  name: 'Home',
   totalTasks: 0,
   tasks: [],
-  icon: "🏠",
+  icon: '🏠'
 };
 
 export const useTasksListStore = create<TasksListState>((set, get) => ({
   items: [HomeTaskList],
   selected: HomeTaskList,
-  createOne: (taskList) =>
-    set((state) => ({
-      items: [...state.items, taskList],
+  createOne: taskList =>
+    set(state => ({
+      items: [...state.items, taskList]
     })),
-  deleteOne: (id) => {
+  deleteOne: id => {
     const { items, selectOne } = get();
-    const filter = items.filter((item) => item.id !== id);
+    const filter = items.filter(item => item.id !== id);
 
     selectOne(HomeTaskList.id);
 
     set(() => ({
-      items: filter,
+      items: filter
     }));
   },
-  changeName: (newName) => {
+  changeName: newName => {
     const { items, selected } = get();
-    const taskList = items.find((item) => item.id === selected.id);
+    const taskList = items.find(item => item.id === selected.id);
 
     if (taskList === undefined) return;
 
     taskList.name = newName;
 
     set(() => ({
-      selected: taskList,
+      selected: taskList
     }));
   },
-  changeIcon: (newIcon) => {
+  changeIcon: newIcon => {
     const { items, selected } = get();
-    const taskList = items.find((item) => item.id === selected.id);
+    const taskList = items.find(item => item.id === selected.id);
 
     if (taskList === undefined) return;
 
     taskList.icon = newIcon;
 
     set(() => ({
-      selected: taskList,
+      selected: taskList
     }));
   },
-  selectOne: (id) => {
+  selectOne: id => {
     const { items } = get();
-    const newSelected = items.find((item) => item.id === id);
+    const newSelected = items.find(item => item.id === id);
     set(() => ({
-      selected: newSelected,
+      selected: newSelected
     }));
   },
-  addTask: (newTask) => {
+  addTask: newTask => {
     const { items, selected } = get();
 
-    const taskList = items.find((item) => item.id === selected.id);
+    const taskList = items.find(item => item.id === selected.id);
 
     if (taskList === undefined) return;
 
@@ -82,43 +82,43 @@ export const useTasksListStore = create<TasksListState>((set, get) => ({
     taskList.totalTasks += 1;
 
     set(() => ({
-      selected: taskList,
+      selected: taskList
     }));
   },
-  deleteTask: (taskId) => {
+  deleteTask: taskId => {
     const { items, selected } = get();
 
-    const taskList = items.find((item) => item.id === selected.id);
+    const taskList = items.find(item => item.id === selected.id);
 
     if (taskList === undefined) return;
 
-    const filter = taskList.tasks.filter((item) => item.id !== taskId);
+    const filter = taskList.tasks.filter(item => item.id !== taskId);
     taskList.tasks = filter;
     taskList.totalTasks -= 1;
 
     set(() => ({
-      selected: taskList,
+      selected: taskList
     }));
   },
-  changeTaskStatus: (taskId) => {
+  changeTaskStatus: taskId => {
     const { items, selected } = get();
 
-    const taskList = items.find((item) => item.id === selected.id);
+    const taskList = items.find(item => item.id === selected.id);
 
     if (taskList === undefined) return;
 
-    taskList.tasks = taskList.tasks.map((task) => {
+    taskList.tasks = taskList.tasks.map(task => {
       if (task.id === taskId) {
         return {
           ...task,
-          isCompleted: !task.isCompleted,
+          isCompleted: !task.isCompleted
         };
       }
       return task;
     });
 
     set(() => ({
-      selected: taskList,
+      selected: taskList
     }));
-  },
+  }
 }));

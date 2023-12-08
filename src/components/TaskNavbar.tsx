@@ -1,8 +1,8 @@
-import { Box, Flex, Heading, Input, Text } from "@chakra-ui/react";
-import BackgroundSelector from "./BackgroundSelector";
-import { useTasksListStore } from "../store/tasksListStore";
-import { useState } from "react";
-import EmojiPicker from "emoji-picker-react";
+import { Box, Flex, Heading, Input, Text } from '@chakra-ui/react';
+import BackgroundSelector from './BackgroundSelector';
+import { useTasksListStore } from '../store/tasksListStore';
+import { useState } from 'react';
+import EmojiPicker from 'emoji-picker-react';
 
 const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: string) => void }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -10,7 +10,7 @@ const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: st
 
   const { selected, changeName, changeIcon } = useTasksListStore();
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
     const { value } = e.target;
 
     value && changeName(value);
@@ -20,43 +20,39 @@ const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: st
     <>
       <Flex justify="space-between" align="center" w="85%" mx="auto" mt="20px">
         <Flex width="40%" alignItems="center" gap="20px" py="5px">
-          {selected.name === "Home" ? (
+          {selected.name === 'Home' ? (
             <>
-              <Text fontSize={30}>
-                {selected.icon}
-              </Text>
+              <Text fontSize={30}>{selected.icon}</Text>
               <Heading as="h3" fontSize={35} padding={0}>
                 {selected.name}
               </Heading>
             </>
-          ) : 
+          ) : (
             <>
               <Text onClick={() => setIsEmojiPicker(!isEmojiPicker)} fontSize={30} cursor="pointer">
                 {selected.icon}
               </Text>
-              {
-                isEditing ? (
-                    <Input
-                      onChange={handleChange}
-                      maxLength={25}
-                      onBlur={() => setIsEditing(false)}
-                      width="100%"
-                      placeholder={selected.name}
-                      color="white"
-                      border="none"
-                      fontSize={35}
-                      focusBorderColor="transparent"
-                      fontWeight="bold"
-                      padding={0}
-                    />
-                ) : (
-                  <Heading as="h3" fontSize={35} padding={0} onClick={() => setIsEditing(true)}>
-                    {selected.name}
-                  </Heading>
-                )
-              }
+              {isEditing ? (
+                <Input
+                  onChange={handleChange}
+                  maxLength={25}
+                  onBlur={() => setIsEditing(false)}
+                  width="100%"
+                  placeholder={selected.name}
+                  color="white"
+                  border="none"
+                  fontSize={35}
+                  focusBorderColor="transparent"
+                  fontWeight="bold"
+                  padding={0}
+                />
+              ) : (
+                <Heading as="h3" fontSize={35} padding={0} onClick={() => setIsEditing(true)}>
+                  {selected.name}
+                </Heading>
+              )}
             </>
-          }
+          )}
         </Flex>
         <BackgroundSelector changeBackground={changeBackground} />
       </Flex>
@@ -65,7 +61,7 @@ const TaskNavbar = ({ changeBackground }: { changeBackground: (newBackground: st
           <EmojiPicker
             previewConfig={{ showPreview: true }}
             searchDisabled={true}
-            onEmojiClick={(e) => {
+            onEmojiClick={e => {
               changeIcon(e.emoji);
               setIsEmojiPicker(!isEmojiPicker);
             }}
