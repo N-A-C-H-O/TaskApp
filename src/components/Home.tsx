@@ -1,13 +1,13 @@
-import { Grid } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import TaskContainer from './TaskContainer';
-import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
 function Home() {
   return (
-    <Grid templateColumns={{ lg: '1fr 3fr', xl: '1fr 4fr', '2xl': '1fr 5fr' }} height="100vh">
-      <Navbar />
+    <Flex height="100vh">
+      <Sidebar />
       <TaskContainer />
-    </Grid>
+    </Flex>
   );
 }
 

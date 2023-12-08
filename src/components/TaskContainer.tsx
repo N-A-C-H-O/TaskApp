@@ -15,7 +15,7 @@ const TaskContainer = () => {
   };
 
   return (
-    <Flex bg={background ? background : '#acafaf'} flexDirection="column" justify="space-between" maxH="100vh">
+    <Flex bg={background ? background : '#acafaf'} w={'100%'} flex={{ md: 2, lg: 3, xl: 4, '2xl': 5 }} flexDirection="column" justify="space-between">
       <TaskNavbar changeBackground={changeBackground} />
       <Box my="50px" mx="20px" h="100%" overflowY="auto">
         {selected.tasks
