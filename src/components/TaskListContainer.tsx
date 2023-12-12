@@ -3,6 +3,7 @@ import { TaskList } from '../types';
 import { useTasksListStore } from '../store/tasksListStore';
 import { v4 as uuidv4 } from 'uuid';
 import TaskListItem from './TaskListItem';
+import colors from '../global/colors';
 
 const TaskListContainer = () => {
   const { items, createOne } = useTasksListStore();
@@ -20,13 +21,13 @@ const TaskListContainer = () => {
   };
 
   return (
-    <Flex flexDirection="column" justify="space-between" bg="green" h="100%">
-      <Box bg="yellowgreen" h="100%" maxH="25rem" overflowY="auto">
+    <Flex flexDirection="column" justify="space-between" bg={colors.lighter} h="100%">
+      <Box h="100%" maxH="25rem" overflowY="auto">
         {items.map(item => {
           return <TaskListItem key={item.id} taskList={item} />;
         })}
       </Box>
-      <Button bg="red" w="80%" mb="25px" mx="auto" display="block" onClick={() => createList()}>
+      <Button bg={colors.background} color={colors.lightest} transitionDuration="0.3s" w="80%" _hover={{ bg: colors.deep }} mb="25px" mx="auto" display="block" onClick={() => createList()}>
         Create list
       </Button>
     </Flex>

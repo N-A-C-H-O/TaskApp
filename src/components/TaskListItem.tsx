@@ -2,16 +2,19 @@ import { Flex, Icon, Text } from '@chakra-ui/react';
 import { IoClose } from 'react-icons/io5';
 import { TaskList } from '../types';
 import { useTasksListStore } from '../store/tasksListStore';
+import colors from '../global/colors';
 
 const TaskListItem = ({ taskList }: { taskList: TaskList }) => {
   const { selectOne, deleteOne } = useTasksListStore();
 
   return (
     <>
-      <Flex align="center" justify="space-between" bg="yellow" mb="20px" p="8px" cursor="pointer" onClick={() => selectOne(taskList.id)}>
+      <Flex align="center" my={5} justify="space-between" bg={colors.lightest} mb="20px" p={3} cursor="pointer" onClick={() => selectOne(taskList.id)}>
         <Flex align="center" gap="10px">
           <Text fontSize={20}>{taskList.icon}</Text>
-          <Text>{taskList.name}</Text>
+          <Text color={colors.deepest} fontWeight="bold">
+            {taskList.name}
+          </Text>
         </Flex>
         <Flex align="center" gap="10px">
           <Text>{taskList.totalTasks}</Text>

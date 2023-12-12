@@ -3,6 +3,8 @@ import BackgroundSelector from './BackgroundSelector';
 import { useTasksListStore } from '../store/tasksListStore';
 import { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
+import colors from '../global/colors';
+import { color } from 'framer-motion';
 
 const TaskNavbar = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +25,7 @@ const TaskNavbar = () => {
           {selected.name === 'Home' ? (
             <>
               <Text fontSize={30}>{selected.icon}</Text>
-              <Heading as="h3" fontSize={35} padding={0}>
+              <Heading as="h3" color={colors.lightest} fontSize={35}>
                 {selected.name}
               </Heading>
             </>
@@ -39,7 +41,8 @@ const TaskNavbar = () => {
                   onBlur={() => setIsEditing(false)}
                   width="100%"
                   placeholder={selected.name}
-                  color="white"
+                  color={colors.lighter}
+                  _placeholder={{ color: colors.lighter }}
                   border="none"
                   fontSize={35}
                   focusBorderColor="transparent"
@@ -47,7 +50,7 @@ const TaskNavbar = () => {
                   padding={0}
                 />
               ) : (
-                <Heading as="h3" fontSize={35} padding={0} onClick={() => setIsEditing(true)}>
+                <Heading as="h3" color={colors.lightest} fontSize={35} padding={0} onClick={() => setIsEditing(true)}>
                   {selected.name}
                 </Heading>
               )}
