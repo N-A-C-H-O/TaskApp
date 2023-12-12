@@ -1,6 +1,6 @@
 import { Task } from '../types';
 import { useTasksListStore } from '../store/tasksListStore';
-import { IoClose } from 'react-icons/io5';
+import { FaTrash } from 'react-icons/fa6';
 import { Button, Checkbox, Flex, Icon } from '@chakra-ui/react';
 import colors from '../global/colors';
 
@@ -26,7 +26,7 @@ const TaskItem = ({ task }: { task: Task }) => {
         {task.name}
       </Checkbox>
       <Button onClick={() => deleteTask(task.id)} bg="transparent" _hover={{ backgroundColor: 'trasnparent' }} _active={{ backgroundColor: 'trasnparent' }}>
-        <Icon as={IoClose} fontSize={30} />
+        <Icon as={FaTrash} fontSize={20} color={colors.deepest} />
       </Button>
     </Flex>
   );

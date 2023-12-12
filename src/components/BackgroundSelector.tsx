@@ -1,4 +1,4 @@
-import { HiDotsHorizontal } from 'react-icons/hi';
+import { IoIosOptions } from 'react-icons/io';
 import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Button, Flex, Box, Icon } from '@chakra-ui/react';
 import backgrounds from '../global/backgrounds';
 import { useBackgroundListStore } from '../store/backgroundStore';
@@ -11,7 +11,7 @@ const BackgroundSelector = () => {
 
   return (
     <Button onClick={onOpen} bg="transparent" _hover={{ backgroundColor: 'tranparent' }} _focus={{ backgroundColor: 'transparent' }}>
-      <Icon as={HiDotsHorizontal} fontSize={25} />
+      <Icon as={IoIosOptions} color={colors.lightest} fontSize={25} />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={colors.lightest}>

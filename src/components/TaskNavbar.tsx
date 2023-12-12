@@ -4,7 +4,6 @@ import { useTasksListStore } from '../store/tasksListStore';
 import { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import colors from '../global/colors';
-import { color } from 'framer-motion';
 
 const TaskNavbar = () => {
   const [isEditing, setIsEditing] = useState(false);

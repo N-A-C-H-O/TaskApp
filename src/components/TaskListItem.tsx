@@ -1,5 +1,5 @@
 import { Flex, Icon, Text } from '@chakra-ui/react';
-import { IoClose } from 'react-icons/io5';
+import { FaTrash } from 'react-icons/fa6';
 import { TaskList } from '../types';
 import { useTasksListStore } from '../store/tasksListStore';
 import colors from '../global/colors';
@@ -16,7 +16,7 @@ const TaskListItem = ({ taskList }: { taskList: TaskList }) => {
             {taskList.name}
           </Text>
         </Flex>
-        <Flex align="center" gap="10px">
+        <Flex align="center" gap="15px">
           <Text>{taskList.totalTasks}</Text>
           {taskList.name !== 'Home' && (
             <Icon
@@ -24,8 +24,9 @@ const TaskListItem = ({ taskList }: { taskList: TaskList }) => {
                 deleteOne(taskList.id);
                 e.stopPropagation();
               }}
-              as={IoClose}
-              fontSize={20}
+              as={FaTrash}
+              fontSize={18}
+              color={colors.deepest}
             ></Icon>
           )}
         </Flex>
